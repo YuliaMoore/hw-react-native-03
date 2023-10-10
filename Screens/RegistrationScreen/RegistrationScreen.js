@@ -10,10 +10,16 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 
-const LoginScreen = ({ changeScrenn }) => {
+const buttonImg = require("./add.png");
+
+const RegistrationScreen = ({ changeScrenn }) => {
+  const [login, setLogin] = useState("");
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
 
+  const handleLogin = (text) => {
+    setLogin(text);
+  };
   const handleMail = (text) => {
     setMail(text);
   };
@@ -22,14 +28,14 @@ const LoginScreen = ({ changeScrenn }) => {
   };
 
   const register = () => {
-    if (!mail || !password) {
-      alert("Введіть ваші дані");
+    if (!login || !mail || !password) {
+      alert("Enter all data pleace!!!");
       return;
     }
-    console.log(`Email: ${mail}, Password: ${password}`);
+    console.log(`Login: ${login}, Email: ${mail}, Password: ${password}`);
   };
 
-  const passwShow = () => alert(`Ваш пароль: ${password}`);
+  const passwShow = () => alert(`Your password is: ${password}`);
 
   return (
     <KeyboardAvoidingView
@@ -37,8 +43,23 @@ const LoginScreen = ({ changeScrenn }) => {
       style={styles.containerKeyB}
     >
       <View style={styles.container}>
-        <Text style={styles.title}>Увійти</Text>
+        <View style={styles.pfotoContainer}>
+          <TouchableOpacity style={styles.addbutton} activeOpacity={0.5}>
+            <ImageBackground
+              source={buttonImg}
+              style={{ width: "100%", height: "100%" }}
+            ></ImageBackground>
+          </TouchableOpacity>
+        </View>
+        <Text style={styles.title}>Реєстрація</Text>
 
+        <TextInput
+          style={styles.inputLogin}
+          placeholder="Логін"
+          inputMode="text"
+          value={login}
+          onChangeText={handleLogin}
+        />
         <TextInput
           style={styles.inputMailPassw}
           placeholder="Адреса електронної пошти"
@@ -67,17 +88,15 @@ const LoginScreen = ({ changeScrenn }) => {
           activeOpacity={0.5}
           onPress={register}
         >
-          <Text style={styles.registerButtonText}>Увійти</Text>
+          <Text style={styles.registerButtonText}>Зареєстуватися</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.loginLink}
           activeOpacity={0.5}
-          onPress={() => changeScrenn(1)}
+          onPress={() => changeScrenn(0)}
         >
-          <Text style={styles.loginLinkText}>
-            Немає акаунту? Зареєструватися
-          </Text>
+          <Text style={styles.loginLinkText}>Вже є акаунт? Увійти</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
@@ -175,4 +194,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default RegistrationScreen;

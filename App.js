@@ -7,8 +7,8 @@ import {
   Keyboard,
 } from "react-native";
 import React, { useState } from "react";
-import RegistrationScreen from "./Screens/RegistrationScreen";
-import LoginScreen from "./Screens/LoginScreen";
+import RegistrationScreen from "./Screens/RegistrationScreen/RegistrationScreen";
+import LoginScreen from "./Screens/LoginScreen/LoginScreen";
 
 const backImage = require("./Source/Photo_BG.png");
 
